@@ -1,0 +1,130 @@
+DROP TABLE IF EXISTS users
+
+CREATE TABLE IF NOT EXISTS users(
+	user_id SERIAL PRIMARY KEY,
+	first_name VARCHAR(25),
+	age INTEGER NOT NULL UNIQUE,
+	address VARCHAR
+);
+
+select * from users
+
+INSERT INTO users(first_name,age,address) values
+('Jalil',15,'Fargona'),
+('Abbos',18,'Qoqon'),
+('Bakir',26,'Andijon'),
+('Toxir',33,'Toshkent')
+
+
+
+
+
+-- 2-misol
+DROP TABLE IF EXISTS products
+
+
+CREATE TABLE IF NOT EXISTS products(
+	product_id SERIAL PRIMARY KEY,
+	product_name VARCHAR(30),
+	price INTEGER ,
+	about VARCHAR
+);
+
+select * from products
+
+INSERT INTO products(product_name,price,about) values
+('Iphone',1000,'ram512'),
+('PC',2000,'INTELLIGENT'),
+('Car',9000,'Safety');
+
+
+
+
+
+-- 3-misol
+
+
+
+DROP TABLE IF EXISTS product_order
+
+CREATE TABLE IF NOT EXISTS product_order(
+	product_id SERIAL PRIMARY KEY,
+	user_name VARCHAR(25),
+	product_name VARCHAR,
+	amount INTEGER
+);
+
+
+
+select * from product_order
+
+INSERT INTO product_order(user_name,product_name,amount) values
+('Ali','apple',10000),
+('Jalil','Phone',2000),
+('Jasur','Pitsa',4),
+('Toxir','Laptop',1234);
+
+
+
+-- 4-misol
+
+
+
+DROP TABLE IF EXISTS employees
+
+
+CREATE TABLE IF NOT EXISTS employees(
+	user_id SERIAL PRIMARY KEY,
+	employee_name VARCHAR(30),
+	employee_position VARCHAR,
+	salary_year INTEGER 
+);
+
+select * from EMPLOYEES
+
+INSERT INTO employees(employee_name,employee_position,salary_year) values
+('Jalil','Manager',10000),
+('Toxir','Guard',1000),
+('Jasur','Bugalter',15000);
+
+
+-- 5-misol
+DROP TABLE IF EXISTS yetkazib_beruvchilar
+
+
+
+CREATE TABLE IF NOT EXISTS yetkazib_beruvchilar(
+	yetkazib_beruvchi_idsi SERIAL PRIMARY KEY,
+	kompaniya_nomi VARCHAR(50),
+	telefon_raqam VARCHAR,
+	manzil VARCHAR
+);
+
+
+select * from yetkazib_beruvchilar
+
+
+INSERT INTO yetkazib_beruvchilar(kompaniya_nomi,telefon_raqam,manzil) values
+('KFC','+99811232132','Fergana'),
+('ALIEXPRESS','+998123456','Qoqon'),
+('Alibaba','+998123432232','Andijon'),
+('Amozon','+9989123344444','Namangan');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
