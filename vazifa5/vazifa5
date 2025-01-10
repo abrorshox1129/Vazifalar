@@ -1,0 +1,129 @@
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+
+
+CREATE TABLE IF NOT EXISTS authors(
+  user_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  bio TEXT,
+  joined TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+SELECT * FROM authors;
+
+INSERT INTO authors(first_name,last_name,bio) VALUES
+('Toxir','Toxirov','Assalomu alaykum'),
+('Jalil','Jalilov','Va alaykum assalom');
+
+-----------------------------------------------------------
+-- 2-jadval
+
+CREATE TABLE IF NOT EXISTS books(
+	book_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+	title VARCHAR(100),
+	summary TEXT,
+	published_data DATE,
+	meta_data JSON,
+	update_data TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+SELECT * FROM books;
+
+
+INSERT INTO books(title,summary,published_data,meta_data) VALUES
+('Mashaqqat','qwerth','05.14.2022','{"janr":"drama"}'),
+('jang','hfdsghdfsjh','02.03.2002','{"janr":"Horror"}');
+
+
+---------------------------------------------------------------------------
+-- 3-jadval
+
+
+CREATE TABLE IF NOT EXISTS publishers(
+	publish_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+	name VARCHAR(100),
+	country CHAR(2),
+	founded_year INTEGER,
+	details JSON,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+SELECT * FROM publishers;
+
+INSERT INTO publishers(name,country,founded_year,details) VALUES 
+('aaaa','12',1999,'{"manzil":"htttps//sdsds"}'),
+('bbbb','23',1988,'{"addres":"https//dfvfvdf"}')
+
+-------------------------------------------------------------------------
+-- 4-jadval
+
+CREATE TABLE IF NOT EXISTS librarys(
+	library_id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+	name VARCHAR(100),
+	location TEXT,
+	open_time TIME,
+	close_time TIME,
+	facilities JSON,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+SELECT * FROM librarys;
+
+INSERT INTO librarys(name,location,open_time,close_time,facilities) VALUES
+('BOOK WORLD','FERGANA','8:00','21:00','{"FREE WIFI":"free"}'),
+('BOOKS','NAMANGAN','7:00','23:00','{"FREE WIFI":"free"}');
+
+---------------------------------------------------------------------------------
+
+-- 1-misol
+CREATE TABLE IF NOT EXISTS author_book (
+    author_id UUID NOT NULL,
+    book_id UUID NOT NULL,
+    PRIMARY KEY (author_id, book_id),
+    CONSTRAINT fk_author FOREIGN KEY (author_id) REFERENCES authors(user_id) ON DELETE CASCADE,
+    CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES books(book_id) ON DELETE CASCADE
+);
+
+
+-----------------------------------------------------------
+-- 2-misol
+CREATE TABLE IF NOT EXISTS book_publisher (
+    publisher_id UUID NOT NULL,
+    book_id UUID NOT NULL,
+    PRIMARY KEY (publisher_id, book_id),
+    CONSTRAINT fk_publisher FOREIGN KEY (publisher_id) REFERENCES publishers(publish_id) ON DELETE CASCADE,
+    CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES books(book_id) ON DELETE CASCADE
+);
+
+
+
+-----------------------------------------------------------
+-- 3-misol
+
+CREATE TABLE IF NOT EXISTS library_book (
+    library_id UUID NOT NULL,
+    book_id UUID NOT NULL,
+    PRIMARY KEY (library_id, book_id),
+    CONSTRAINT fk_library_id FOREIGN KEY (library_id) REFERENCES librarys(library_id) ON DELETE CASCADE,
+    CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES books(book_id) ON DELETE CASCADE
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
